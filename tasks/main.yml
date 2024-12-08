@@ -1,0 +1,24 @@
+---
+- name: Install docker dependecies
+  apt:
+    name:
+      - ca-certificates
+      - curl
+- name: Create keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: 0755
+- name:
+  apt_key:
+    url: "{{ docker_repo_url }}/gpg"
+    state: present
+- name: Add repository to apt sources
+  apt_repository:
+    repo: "{{ docker_repo }}"
+    state: present
+- name: Install docker
+  apt:
+    name: "{{ docker_packages }}"
+    state: latest
+    update-cache: true

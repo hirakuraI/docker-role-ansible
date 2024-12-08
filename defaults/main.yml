@@ -1,0 +1,8 @@
+---
+- docker_packages:
+    - docker
+    - docker.io
+    - docker-compose
+    - docker-registry
+- docker_repo_url: "https://download.docker.com/linux/ubuntu"
+- docker_repo: "deb [arch=amd64] {{ docker_repo_url }} {{ansible_distribution_release}} focal stable"
